@@ -1,5 +1,7 @@
 using Microsoft.Data.Sqlite;
 
+InitialTables.Init();
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
@@ -52,25 +54,22 @@ app.Use(async (ctx, next) =>
 
 app.Run();
 
+// var connectionStringBuilder = new SqliteConnectionStringBuilder();
+// connectionStringBuilder.DataSource = "db.db";
 
+// using var connection = new SqliteConnection(connectionStringBuilder.ConnectionString);
+// connection.Open();
+// var Command = connection.CreateCommand();
 
+// string createTable = "CREATE TABLE IF NOT EXISTS Users (id INTEGER PRIMARY KEY AUTOINCREMENT, Username TEXT NOT NULL, Password TEXT NOT NULL);";
+// Command.CommandText = createTable;
+// Command.ExecuteNonQuery();
 
-var connectionStringBuilder = new SqliteConnectionStringBuilder();
-connectionStringBuilder.DataSource = "db.db";
+// string dataTable = "CREATE TABLE IF NOT EXISTS Data (id INTEGER PRIMARY KEY AUTOINCREMENT, Content TEXT NOT NULL, UserId INTEGER NOT NULL REFERENCES Users(id));";
 
-using var connection = new SqliteConnection(connectionStringBuilder.ConnectionString);
-connection.Open();
-var Command = connection.CreateCommand();
+// Command.CommandText = dataTable;
+// Command.ExecuteNonQuery();
 
-string createTable = "CREATE TABLE IF NOT EXISTS Users (id INTEGER PRIMARY KEY AUTOINCREMENT, Username TEXT NOT NULL, Password TEXT NOT NULL);";
-Command.CommandText = createTable;
-Command.ExecuteNonQuery();
-
-string dataTable = "CREATE TABLE IF NOT EXISTS Data (id INTEGER PRIMARY KEY AUTOINCREMENT, Content TEXT NOT NULL, UserId INTEGER NOT NULL REFERENCES Users(id));";
-
-Command.CommandText = dataTable;
-Command.ExecuteNonQuery();
-
-connection.Close();
+// connection.Close();
 
 
