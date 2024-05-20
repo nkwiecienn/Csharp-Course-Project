@@ -34,8 +34,10 @@ class InitialTables
                 "CREATE TABLE Albums ("
                 + "AlbumID INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + "Name TEXT NOT NULL,"
+                + "ArtistID INTEGER NOT NULL"
                 + "ReleaseDate TEXT NOT NULL,"
-                + "Genre TEXT NOT NULL);";
+                + "Genre TEXT NOT NULL"
+                + "FOREIGN KEY (ArtistID) REFERENCES Artists(ArtistID));";
             createTableCmd.ExecuteNonQuery();
 
             // Create Songs table
