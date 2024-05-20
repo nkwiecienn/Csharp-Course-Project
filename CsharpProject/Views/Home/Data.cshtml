@@ -1,0 +1,15 @@
+<h1>Data</h1>
+
+@* <form method="post" style="text-align: center;">
+    <label for="data" style="display: inline-block; width: 100px;">Data:</label>
+    <input type="text" id="data" name="data"/> <br/> <br/>
+    <input type="submit" value="Submit" asp-page-handler="Submit"/> <br/>
+    <h>@ViewData["Message"]</h>
+</form>
+
+<ul>
+    @foreach (String item in @ViewData["DataList"] as List<string>)
+    {
+        <li>@item</li>
+    }
+</ul> *@

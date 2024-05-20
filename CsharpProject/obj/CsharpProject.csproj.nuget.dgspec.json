@@ -1,31 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\natal\\VS Projects\\pz2-projekt\\CsharpProject\\CsharpProject.csproj": {}
+    "C:\\Users\\Oliwier\\Desktop\\oop\\kntry\\ISI\\IV\\pz2\\lab11\\Csharp-Course-Project\\CsharpProject\\CsharpProject.csproj": {}
   },
   "projects": {
-    "C:\\Users\\natal\\VS Projects\\pz2-projekt\\CsharpProject\\CsharpProject.csproj": {
+    "C:\\Users\\Oliwier\\Desktop\\oop\\kntry\\ISI\\IV\\pz2\\lab11\\Csharp-Course-Project\\CsharpProject\\CsharpProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\natal\\VS Projects\\pz2-projekt\\CsharpProject\\CsharpProject.csproj",
+        "projectUniqueName": "C:\\Users\\Oliwier\\Desktop\\oop\\kntry\\ISI\\IV\\pz2\\lab11\\Csharp-Course-Project\\CsharpProject\\CsharpProject.csproj",
         "projectName": "CsharpProject",
-        "projectPath": "C:\\Users\\natal\\VS Projects\\pz2-projekt\\CsharpProject\\CsharpProject.csproj",
-        "packagesPath": "C:\\Users\\natal\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\natal\\VS Projects\\pz2-projekt\\CsharpProject\\obj\\",
+        "projectPath": "C:\\Users\\Oliwier\\Desktop\\oop\\kntry\\ISI\\IV\\pz2\\lab11\\Csharp-Course-Project\\CsharpProject\\CsharpProject.csproj",
+        "packagesPath": "C:\\Users\\Oliwier\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Oliwier\\Desktop\\oop\\kntry\\ISI\\IV\\pz2\\lab11\\Csharp-Course-Project\\CsharpProject\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\natal\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Oliwier\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -43,6 +37,12 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[7.0.5, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -62,7 +62,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.406\\RuntimeIdentifierGraph.json"
         }
       }
     }
