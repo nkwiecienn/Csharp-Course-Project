@@ -1,6 +1,8 @@
+using Microsoft.Data.Sqlite;
+
 public class DataBaseSelect {
 
-    private readonly string connectionString = "Data Source=db.db";
+    private readonly static string connectionString = "Data Source=db.db";
 
     public static List<Artist> SelectArtists () {
         var artists = new List<Artist>();
@@ -15,7 +17,7 @@ public class DataBaseSelect {
                         ArtistID = reader.GetInt32(0),
                         Name = reader.GetString(1),
                         DebutDate = reader.GetString(2)
-                    })
+                    });
                 }
             }
 
@@ -41,7 +43,7 @@ public class DataBaseSelect {
                         ArtistID = reader.GetInt32(2),
                         ReleaseDate = reader.GetString(3),
                         Genre = reader.GetString(4)
-                    })
+                    });
                 }
             }
 
@@ -66,7 +68,7 @@ public class DataBaseSelect {
                         SongID = reader.GetInt32(0),
                         AlbumID = reader.GetInt32(1),
                         Name = reader.GetString(2),
-                    })
+                    });
                 }
             }
 
@@ -90,7 +92,7 @@ public class DataBaseSelect {
                         PlaylistID = reader.GetInt32(0),
                         UserID = reader.GetInt32(1),
                         Name = reader.GetString(2),
-                    })
+                    });
                 }
             }
 
@@ -118,7 +120,7 @@ public class DataBaseSelect {
                         SongID = reader.GetInt32(0),
                         AlbumID = reader.GetInt32(1),
                         Name = reader.GetString(2),
-                    })
+                    });
                 }
             }
 
@@ -130,7 +132,7 @@ public class DataBaseSelect {
 
     public static List<Song> SelectUsersFavorites (int userID) {
 
-        var songs = new List<Album>();
+        var songs = new List<Song>();
 
         using (var connection = new SqliteConnection(connectionString)) {
             connection.Open();
@@ -148,7 +150,7 @@ public class DataBaseSelect {
                         SongID = reader.GetInt32(0),
                         AlbumID = reader.GetInt32(1),
                         Name = reader.GetString(2),
-                    })
+                    });
                 }
             }
 

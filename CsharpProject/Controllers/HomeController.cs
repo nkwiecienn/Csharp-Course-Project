@@ -155,67 +155,67 @@ public class HomeController : Controller
         }
     }
 
-    [Route("/data")]
-    public IActionResult Data()
-    {
-        ViewData["Username"] = HttpContext.Session.GetString("Username");
+    // [Route("/data")]
+    // public IActionResult Data()
+    // {
+    //     ViewData["Username"] = HttpContext.Session.GetString("Username");
 
-        if (ViewData["Username"] is null)
-        {
-            return RedirectToAction("Login");
-        }
+    //     if (ViewData["Username"] is null)
+    //     {
+    //         return RedirectToAction("Login");
+    //     }
 
-        using (var connection = new SqliteConnection("Data Source=db.db"))
+    //     using (var connection = new SqliteConnection("Data Source=db.db"))
 
-        {
-            connection.Open();
-            var command = connection.CreateCommand();
-            command.CommandText = "SELECT * FROM Data WHERE UserId = (SELECT Id FROM Users WHERE Username = @Username);";
-            command.Parameters.AddWithValue("@Username", ViewData["Username"].ToString());
-            var reader = command.ExecuteReader();
-            List<String> dataList = new List<String>();
-            while (reader.Read())
-            {
-                dataList.Add(new String(reader.GetString(1)));
-            }
-            ViewData["DataList"] = dataList;
-        }
-        return View();
-    }
+    //     {
+    //         connection.Open();
+    //         var command = connection.CreateCommand();
+    //         command.CommandText = "SELECT * FROM Data WHERE UserId = (SELECT Id FROM Users WHERE Username = @Username);";
+    //         command.Parameters.AddWithValue("@Username", ViewData["Username"].ToString());
+    //         var reader = command.ExecuteReader();
+    //         List<String> dataList = new List<String>();
+    //         while (reader.Read())
+    //         {
+    //             dataList.Add(new String(reader.GetString(1)));
+    //         }
+    //         ViewData["DataList"] = dataList;
+    //     }
+    //     return View();
+    // }
 
-    [HttpPost]
-    [Route("/data")]
-    public IActionResult Data(IFormCollection form)
-    {
-        ViewData["Username"] = HttpContext.Session.GetString("Username");
+    // [HttpPost]
+    // [Route("/data")]
+    // public IActionResult Data(IFormCollection form)
+    // {
+    //     ViewData["Username"] = HttpContext.Session.GetString("Username");
 
-        if (ViewData["Username"] is null)
-        {
-            return RedirectToAction("Login");
-        }
+    //     if (ViewData["Username"] is null)
+    //     {
+    //         return RedirectToAction("Login");
+    //     }
 
-        using (var connection = new SqliteConnection("Data Source=db.db"))
+    //     using (var connection = new SqliteConnection("Data Source=db.db"))
 
-        {
-            String content = form["data"].ToString();
+    //     {
+    //         String content = form["data"].ToString();
 
 
-            String username = HttpContext.Session.GetString("Username");
+    //         String username = HttpContext.Session.GetString("Username");
             
 
-            connection.Open();
-            var command = connection.CreateCommand();
-            command.CommandText = "INSERT INTO Data (Content, UserId) VALUES (@Content, (SELECT Id FROM Users WHERE Username = @Username));";
-            command.Parameters.AddWithValue("@Username", username);
-            command.Parameters.AddWithValue("@Content", content);
-            command.ExecuteNonQuery();
+    //         connection.Open();
+    //         var command = connection.CreateCommand();
+    //         command.CommandText = "INSERT INTO Data (Content, UserId) VALUES (@Content, (SELECT Id FROM Users WHERE Username = @Username));";
+    //         command.Parameters.AddWithValue("@Username", username);
+    //         command.Parameters.AddWithValue("@Content", content);
+    //         command.ExecuteNonQuery();
 
-            ViewData["Message"] = "Data added successfully";
+    //         ViewData["Message"] = "Data added successfully";
 
-        }
+    //     }
 
-        return Data();
-    }
+    //     return Data();
+    // }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
