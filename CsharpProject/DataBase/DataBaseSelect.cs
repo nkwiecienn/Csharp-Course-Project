@@ -49,6 +49,31 @@ public class DataBaseSelect {
         return artists;
     }
 
+        public static Album SelectAlbum (int albumID) {
+        var albums = new List<Album>();
+
+        using (var connection = new SqliteConnection(connectionString)) {
+            connection.Open();
+            var command = new SqliteCommand("SELECT AlbumID, Name, ArtistID, ReleaseDate, Genre FROM Albums WHERE AlbumID = @albumID", connection);
+            command.Parameters.AddWithValue("@albumID", albumID);
+
+            using (var reader = command.ExecuteReader()) {
+                while(reader.Read()) {
+                    albums.Add(new Album{
+                        AlbumID = reader.GetInt32(0),
+                        Name = reader.GetString(1),
+                        ArtistID = reader.GetInt32(2),
+                        ReleaseDate = reader.GetString(3),
+                        Genre = reader.GetString(4)
+                    });
+                }
+            }
+
+        }
+
+        return albums[0];
+    }
+
     public static List<Album> SelectArtistsAlbums (int artistID) {
 
         var albums = new List<Album>();
@@ -82,7 +107,7 @@ public class DataBaseSelect {
 
         using (var connection = new SqliteConnection(connectionString)) {
             connection.Open();
-            var command = new SqliteCommand("SELECT SongID, AlbumID, Name FROM Songs WHERE AlbumID = '@albumID'", connection);
+            var command = new SqliteCommand("SELECT SongID, AlbumID, Name FROM Songs WHERE AlbumID = @albumID", connection);
             command.Parameters.AddWithValue("@albumID", albumID);
 
             using (var reader = command.ExecuteReader()) {

@@ -16,4 +16,11 @@ public class ArtistsController : Controller
         var artist = DataBaseSelect.SelectArtist(id);
         return View(artist);
     }
+
+    public IActionResult AlbumDetails(int id) {
+        ViewData["Username"] = HttpContext.Session.GetString("Username");
+
+        var album = DataBaseSelect.SelectAlbum(id);
+        return View(album);
+    }
 }

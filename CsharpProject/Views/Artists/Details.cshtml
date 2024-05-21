@@ -12,6 +12,7 @@
             <th>Name</th>
             <th>Release Date</th>
             <th>Genre</th>
+            <th>See Songs</th>
         </tr>
     </thead>
     <tbody>
@@ -22,6 +23,9 @@
             <td>@album.Name</td>
             <td>@album.ReleaseDate</td>
             <td>@album.Genre</td>
+            <td>
+                <a href="@Url.Action("AlbumDetails", "Artists", new { id = album.AlbumID })">View Songs</a>
+            </td>
         </tr>
     }
     </tbody>
