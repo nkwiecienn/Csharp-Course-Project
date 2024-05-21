@@ -1,6 +1,6 @@
 public class User
 {
-    public int ClientId { get; set; }
+    public int UserID { get; set; }
     public string Username { get; set; }
     public string Password { get; set; }
 }

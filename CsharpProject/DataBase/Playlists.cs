@@ -1,4 +1,4 @@
-public class Playlist
+public class Playlists
 {
     public int PlaylistID { get; set; }
     public int UserID { get; set; }

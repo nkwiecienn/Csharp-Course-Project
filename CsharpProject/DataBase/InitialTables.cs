@@ -35,7 +35,7 @@ class InitialTables
             // Create Users table
             createTableCmd.CommandText =
                 "CREATE TABLE Users ("
-                + "ClientId INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + "UserID INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + "Username TEXT NOT NULL,"
                 + "Password TEXT NOT NULL);";
             createTableCmd.ExecuteNonQuery();
@@ -79,17 +79,17 @@ class InitialTables
                 + "UserID INTEGER NOT NULL,"
                 + "PRIMARY KEY (SongID, UserID),"
                 + "FOREIGN KEY (SongID) REFERENCES Songs(SongID),"
-                + "FOREIGN KEY (UserID) REFERENCES Users(ClientId));";
+                + "FOREIGN KEY (UserID) REFERENCES Users(UserID));";
             createTableCmd.ExecuteNonQuery();
 
-            // Create Playlist table
+            // Create Playlists table
             createTableCmd = connection.CreateCommand();
             createTableCmd.CommandText =
-                "CREATE TABLE Playlist ("
+                "CREATE TABLE Playlists ("
                 + "PlaylistID INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + "UserID INTEGER NOT NULL,"
                 + "Name TEXT NOT NULL,"
-                + "FOREIGN KEY (UserID) REFERENCES Users(ClientId));";
+                + "FOREIGN KEY (UserID) REFERENCES Users(UserID));";
             createTableCmd.ExecuteNonQuery();
 
             // Create Content table
@@ -99,7 +99,7 @@ class InitialTables
                 + "PlaylistID INTEGER NOT NULL,"
                 + "SongID INTEGER NOT NULL,"
                 + "PRIMARY KEY (PlaylistID, SongID),"
-                + "FOREIGN KEY (PlaylistID) REFERENCES Playlist(PlaylistID),"
+                + "FOREIGN KEY (PlaylistID) REFERENCES Playlists(PlaylistID),"
                 + "FOREIGN KEY (SongID) REFERENCES Songs(SongID));";
             createTableCmd.ExecuteNonQuery();
 
@@ -124,7 +124,7 @@ class InitialTables
             delTableCmd.ExecuteNonQuery();
 
             delTableCmd = connection.CreateCommand();
-            delTableCmd.CommandText = "DROP TABLE IF EXISTS Playlist";
+            delTableCmd.CommandText = "DROP TABLE IF EXISTS Playlists";
             delTableCmd.ExecuteNonQuery();
 
             delTableCmd = connection.CreateCommand();
@@ -337,7 +337,7 @@ class InitialTables
                     insertCmd.ExecuteNonQuery();
 
                     insertCmd.CommandText =
-                    "INSERT INTO Playlist (UserID, Name) VALUES " +
+                    "INSERT INTO Playlists (UserID, Name) VALUES " +
                     "(1, 'Motyle i Cmy')," +
                     "(1, 'Road trip')," +
                     "(2, 'its all good')," +

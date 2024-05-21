@@ -1,0 +1,21 @@
+@model List<Playlists>
+
+<h2>Playlists</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var detail in Model)
+    {
+        <tr>
+            <td>
+                <a href="@Url.Action("PlaylistDetails", "Playlists", new { id = detail.PlaylistID })">@detail.Name</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

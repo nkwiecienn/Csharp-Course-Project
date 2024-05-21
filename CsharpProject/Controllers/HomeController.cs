@@ -70,6 +70,8 @@ public class HomeController : Controller
             {
                 ViewData["Username"] = username;
                 HttpContext.Session.SetString("Username", username);
+                int userID = DataBaseSelect.SelectUser(username).UserID;
+                HttpContext.Session.SetInt32("UserID", userID);
                 return RedirectToAction("Profile");
             }
             else

@@ -1,0 +1,37 @@
+@model Playlists
+
+<h2>@Model.Name</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var song in DataBaseSelect.SelectAlbumsSongs(Model.PlaylistID))
+    {
+        <tr>
+            <td>@song.Name</td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<h3>Recomended</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var song in DataBaseSelect.SelectMostLikedSongInMostPopularGenreInPlaylist(Model.PlaylistID))
+    {
+        <tr>
+            <td>@song.Name</td>
+        </tr>
+    }
+    </tbody>
+</table>

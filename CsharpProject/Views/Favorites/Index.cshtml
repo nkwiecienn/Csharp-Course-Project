@@ -1,0 +1,20 @@
+@model List<Song>
+
+<h2>Favorites</h2>
+
+<h3>Songs</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var song in Model)
+    {
+        <tr>
+            <td>@song.Name</td>
+        </tr>
+    }
+    </tbody>
+</table>

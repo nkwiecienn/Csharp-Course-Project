@@ -4,6 +4,47 @@ public class DataBaseSelect {
 
     private readonly static string connectionString = "Data Source=db.db";
 
+    public static User SelectUser(int userID) {
+        using (var connection = new SqliteConnection(connectionString)) {
+            connection.Open();
+            var command = new SqliteCommand("SELECT UserID, Username, Password FROM Users WHERE UserID = @userID", connection);
+            command.Parameters.AddWithValue("@userID", userID);
+
+            using (var reader = command.ExecuteReader()) {
+                if (reader.Read()) {
+                    return new User {
+                        UserID = reader.GetInt32(0),
+                        Username = reader.GetString(1),
+                        Password = reader.GetString(2)
+                    };
+                } else {
+                    return null;
+                }
+            }
+        }
+    }
+
+    public static User SelectUser(string username) {
+        using (var connection = new SqliteConnection(connectionString)) {
+            connection.Open();
+            var command = new SqliteCommand("SELECT UserID, Username, Password FROM Users WHERE Username = @username", connection);
+            command.Parameters.AddWithValue("@username", username);
+
+            using (var reader = command.ExecuteReader()) {
+                if (reader.Read()) {
+                    return new User {
+                        UserID = reader.GetInt32(0),
+                        Username = reader.GetString(1),
+                        Password = reader.GetString(2)
+                    };
+                } else {
+                    return null;
+                }
+            }
+        }
+    }
+
+
     public static Artist SelectArtist (int artistID) {
         var artists = new List<Artist>();
 
@@ -49,7 +90,7 @@ public class DataBaseSelect {
         return artists;
     }
 
-        public static Album SelectAlbum (int albumID) {
+    public static Album SelectAlbum (int albumID) {
         var albums = new List<Album>();
 
         using (var connection = new SqliteConnection(connectionString)) {
@@ -126,8 +167,28 @@ public class DataBaseSelect {
 
     }
 
-    public static List<Playlist> SelectUsersPlaylists (int userID) {
-        var playlists = new List<Playlist>();
+    public static Playlists SelectPlaylist(int playlistID) {
+        using (var connection = new SqliteConnection(connectionString)) {
+            connection.Open();
+            var command = new SqliteCommand("SELECT PlaylistID, UserID, Name FROM Playlists WHERE PlaylistID=@playlistID", connection);
+            command.Parameters.AddWithValue("@playlistID", playlistID);
+
+            using (var reader = command.ExecuteReader()) {
+                if (reader.Read()) {
+                    return new Playlists {
+                        PlaylistID = reader.GetInt32(0),
+                        UserID = reader.GetInt32(1),
+                        Name = reader.GetString(2)
+                    };
+                } else {
+                    return null;
+                }
+            }
+        }
+    }
+
+    public static List<Playlists> SelectUsersPlaylists (int userID) {
+        var playlists = new List<Playlists>();
 
         using (var connection = new SqliteConnection(connectionString)) {
             connection.Open();
@@ -136,10 +197,10 @@ public class DataBaseSelect {
 
             using (var reader = command.ExecuteReader()) {
                 while(reader.Read()) {
-                    playlists.Add(new Playlist{
+                    playlists.Add(new Playlists{
                         PlaylistID = reader.GetInt32(0),
                         UserID = reader.GetInt32(1),
-                        Name = reader.GetString(2),
+                        Name = reader.GetString(2)
                     });
                 }
             }
@@ -149,34 +210,32 @@ public class DataBaseSelect {
         return playlists;
     }
 
-    public static List<Song> SelectPlaylistsSongs (int playlistID) {
-
+    public static List<Song> SelectPlaylistsSongs(int playlistID) {
         var songs = new List<Song>();
 
         using (var connection = new SqliteConnection(connectionString)) {
             connection.Open();
             var command = new SqliteCommand(
-                                            "SELECT s.SongID, s.AlbumID, s.Name"
-                                            + "FROM Songs s"
-                                            + "INNER JOIN Content c USING SongID"
-                                            + "WHERE c.PlaylistID = '@playlistID'", connection);
+                "SELECT s.SongID, s.AlbumID, s.Name " +
+                "FROM Songs s " +
+                "INNER JOIN Content c ON s.SongID = c.SongID " +
+                "WHERE c.PlaylistID = @playlistID", connection);
             command.Parameters.AddWithValue("@playlistID", playlistID);
 
             using (var reader = command.ExecuteReader()) {
-                while(reader.Read()) {
-                    songs.Add(new Song{
+                while (reader.Read()) {
+                    songs.Add(new Song {
                         SongID = reader.GetInt32(0),
                         AlbumID = reader.GetInt32(1),
-                        Name = reader.GetString(2),
+                        Name = reader.GetString(2)
                     });
                 }
             }
-
         }
 
         return songs;
-
     }
+
 
     public static List<Song> SelectUsersFavorites (int userID) {
 
@@ -185,11 +244,11 @@ public class DataBaseSelect {
         using (var connection = new SqliteConnection(connectionString)) {
             connection.Open();
             var command = new SqliteCommand(
-                                            "SELECT s.SongID, s.AlbumID, s.Name"
-                                            + "FROM Users u"
-                                            + "INNER JOIN Favorites f USING UserID"
-                                            + "INNER JOIN Songs s USING SongID"
-                                            + "WHERE u.UserID = '@userID'", connection);
+                                            "SELECT s.SongID, s.AlbumID, s.Name "
+                                            + "FROM Users u "
+                                            + "INNER JOIN Favorites f ON f.UserID = u.UserID "
+                                            + "INNER JOIN Songs s ON s.SongID = f.SongID "
+                                            + "WHERE u.UserID = @userID", connection);
             command.Parameters.AddWithValue("@userID", userID);
 
             using (var reader = command.ExecuteReader()) {
