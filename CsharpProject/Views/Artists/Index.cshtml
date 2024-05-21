@@ -1,0 +1,27 @@
+@model List<Artist>
+
+<h2>Artists</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Artist</th>
+            <th>Name</th>
+            <th>Debut Date</th>
+            <th>See Albums</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var detail in Model)
+    {
+        <tr>
+            <td>@detail.ArtistID</td>
+            <td>@detail.Name</td>
+            <td>@detail.DebutDate</td>
+            <td>
+                <a href="@Url.Action("Details", "Artists", new { id = detail.ArtistID })">View Albums</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

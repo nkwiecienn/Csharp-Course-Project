@@ -32,7 +32,14 @@
                         <li class="nav-item">
                             @if(ViewData.ContainsKey("username") && ViewData["username"] != null)
                             {
-                                <a class="nav-link text-dark" asp-area="" controller="Home" asp-action="Data">Data</a>
+                                <a class="nav-link" asp-controller="Artists" asp-action="Index">Artists</a>
+                            }
+                        </li>
+
+                        <li class="nav-item">
+                            @if(!ViewData.ContainsKey("username") || ViewData["username"] == null)
+                            {
+                                <a class="nav-link" asp-controller="Artists" asp-action="Index">Artists22</a>
                             }
                         </li>
 

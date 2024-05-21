@@ -1,0 +1,28 @@
+@model Artist
+
+<h2>@Model.Name</h2>
+
+<p>Debut Date: @Model.DebutDate</p>
+
+<h3>Albums</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>AlbumID</th>
+            <th>Name</th>
+            <th>Release Date</th>
+            <th>Genre</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var album in DataBaseSelect.SelectArtistsAlbums(Model.ArtistID))
+    {
+        <tr>
+            <td>@album.AlbumID</td>
+            <td>@album.Name</td>
+            <td>@album.ReleaseDate</td>
+            <td>@album.Genre</td>
+        </tr>
+    }
+    </tbody>
+</table>
