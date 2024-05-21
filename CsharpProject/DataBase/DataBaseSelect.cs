@@ -4,20 +4,27 @@ public class DataBaseSelect {
 
     private readonly static string connectionString = "Data Source=db.db";
 
-    public static Artist SelectArtist(int artistID) {
-        var connection = new SqliteConnection(connectionString);
-        connection.Open();
-        var command = new SqliteCommand("SELECT ArtistID, Name, DebutDate FROM Artists WHERE ArtistID=@artistID", connection);
-        command.Parameters.AddWithValue("@artistID", artistID);
-        
-        
-        using (var reader = command.ExecuteReader()) {
-            return new Artist{
-                ArtistID = reader.GetInt32(0),
-                Name = reader.GetString(1),
-                DebutDate = reader.GetString(2)
-            };
+    public static Artist SelectArtist (int artistID) {
+        var artists = new List<Artist>();
+
+        using (var connection = new SqliteConnection(connectionString)) {
+            connection.Open();
+            var command = new SqliteCommand("SELECT ArtistID, Name, DebutDate FROM Artists WHERE ArtistID=@id", connection);
+            command.Parameters.AddWithValue("@id", artistID);
+
+            using (var reader = command.ExecuteReader()) {
+                while(reader.Read()) {
+                    artists.Add(new Artist{
+                        ArtistID = reader.GetInt32(0),
+                        Name = reader.GetString(1),
+                        DebutDate = reader.GetString(2)
+                    });
+                }
+            }
+
         }
+
+        return artists[0];
     }
 
     public static List<Artist> SelectArtists () {
@@ -48,7 +55,7 @@ public class DataBaseSelect {
 
         using (var connection = new SqliteConnection(connectionString)) {
             connection.Open();
-            var command = new SqliteCommand("SELECT AlbumID, Name, ArtitsID, ReleaseDate, Genre FROM Albums WHERE ArtistID = @artistID", connection);
+            var command = new SqliteCommand("SELECT AlbumID, Name, ArtistID, ReleaseDate, Genre FROM Albums WHERE ArtistID = @artistID", connection);
             command.Parameters.AddWithValue("@artistID", artistID);
 
             using (var reader = command.ExecuteReader()) {

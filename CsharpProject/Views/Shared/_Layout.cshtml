@@ -36,13 +36,6 @@
                             }
                         </li>
 
-                        <li class="nav-item">
-                            @if(!ViewData.ContainsKey("username") || ViewData["username"] == null)
-                            {
-                                <a class="nav-link" asp-controller="Artists" asp-action="Index">Artists22</a>
-                            }
-                        </li>
-
                         <li class="nav-item" style="margin-left: auto">
                             @if(ViewData.ContainsKey("username") && ViewData["username"] != null)
                             {
