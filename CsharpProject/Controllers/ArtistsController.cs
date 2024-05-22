@@ -23,4 +23,21 @@ public class ArtistsController : Controller
         var album = DataBaseSelect.SelectAlbum(id);
         return View(album);
     }
+
+    public IActionResult AddToPlaylist(int id) {
+        ViewData["Username"] = HttpContext.Session.GetString("Username");
+        int userID = (int)HttpContext.Session.GetInt32("UserID");
+        var playlists = DataBaseSelect.SelectUsersPlaylists(userID);
+
+        ViewBag.SongID = id;
+
+        return View(playlists);
+    }
+
+    [HttpPost]
+    public IActionResult Add (int playlistID, int songID) {
+        ViewData["Username"] = HttpContext.Session.GetString("Username");
+        DataBaseInsertStatements.InsertIntoContent(playlistID, songID);
+        return RedirectToAction("Index");
+    }
 }

@@ -16,6 +16,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\natal\VS Projects\pz2-projekt\CsharpProject
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/natal/VS Projects/pz2-projekt/CsharpProject/Views/Artists/AddToPlaylist.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXJ0aXN0c1xBZGRUb1BsYXlsaXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/natal/VS Projects/pz2-projekt/CsharpProject/Views/Artists/AlbumDetails.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXJ0aXN0c1xBbGJ1bURldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
