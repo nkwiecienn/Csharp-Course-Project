@@ -24,4 +24,15 @@ public class DataBaseInsertStatements {
             connection.Close();
         }
     }
+
+    public static void InsertIntoPlaylists(int userID, string name) {
+        using (var connection = new SqliteConnection(connectionString)) {
+            connection.Open();
+            var command = new SqliteCommand("INSERT INTO Playlists (UserID, Name) VALUES (@userID, @name);", connection);
+            command.Parameters.AddWithValue("@name", name);
+            command.Parameters.AddWithValue("@userID", userID);
+            command.ExecuteNonQuery();
+            connection.Close();
+        }
+    }
 }

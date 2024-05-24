@@ -40,5 +40,18 @@ public class PlaylistsController : Controller
         
         return RedirectToAction("PlaylistDetails", new { id =  playlistID});
     }
+
+    public IActionResult Create() {
+        ViewData["Username"] = HttpContext.Session.GetString("Username");
+        return View();
+    }
+
+    [HttpPost]
+    public IActionResult Create(Playlists playlist) {   
+        ViewData["Username"] = HttpContext.Session.GetString("Username");
+        int userID = (int)HttpContext.Session.GetInt32("UserID");
+        DataBaseInsertStatements.InsertIntoPlaylists(userID, playlist.Name);
+        return RedirectToAction("Index");
+    }
     
 }

@@ -1,7 +1,7 @@
 TODO:
-- Usuwanie piosenek z playlist
 - Tworzenie nowych playlist
 - Komunikat że piosenka jest już na playliście jeśli chce się ją dodać drugi raz
+- Usuwanie piosenek z ulubionych
 
 TODO Admin:
 - dodanie admina
