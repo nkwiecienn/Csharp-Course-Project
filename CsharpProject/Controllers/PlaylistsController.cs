@@ -33,5 +33,12 @@ public class PlaylistsController : Controller
         
         return RedirectToAction("PlaylistDetails", new { id =  playlistID});
     }
+
+    public IActionResult DeleteFromContent (int id, int playlistID) {
+        ViewData["Username"] = HttpContext.Session.GetString("Username");
+        DataBaseDeleteStatements.DeleteFromContent(playlistID, id);
+        
+        return RedirectToAction("PlaylistDetails", new { id =  playlistID});
+    }
     
 }
