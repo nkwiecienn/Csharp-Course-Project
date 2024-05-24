@@ -15,7 +15,9 @@
         {
             <tr>
                 <td>
+                    @if(!DataBaseHelpers.IsSongAddedToContent(ViewBag.SongID, detail.PlaylistID)) {
                     <button type="submit" name="playlistID" value="@detail.PlaylistID">@detail.Name</button>
+                    }
                 </td>
             </tr>
         }

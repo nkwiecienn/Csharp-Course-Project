@@ -1,5 +1,4 @@
 TODO:
-- Tworzenie nowych playlist
 - Komunikat że piosenka jest już na playliście jeśli chce się ją dodać drugi raz
 - Usuwanie piosenek z ulubionych
 
@@ -14,3 +13,4 @@ REST API????????????????????????
 
 Ekstra TODO:
 - podzielić klasy z bazy danych na foldery żeby nie było takiego bałaganu
+- obsługa błędów xDDD

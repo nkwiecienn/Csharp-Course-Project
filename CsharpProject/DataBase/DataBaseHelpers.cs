@@ -20,6 +20,22 @@ public class DataBaseHelpers {
         }
     }
 
+    public static Boolean IsSongAddedToContent(int SongID, int PlaylistID) {
+        using (var connection = new SqliteConnection(connectionString)) {
+            connection.Open();
+            var command = new SqliteCommand("SELECT SongID, PlaylistID FROM Content WHERE SongID = @SongID AND PlaylistID = @PlaylistID", connection);
+            command.Parameters.AddWithValue("@PlaylistID", PlaylistID);
+            command.Parameters.AddWithValue("@SongID", SongID);
+
+            using (var reader = command.ExecuteReader()) {
+                if(reader.Read()) {
+                    return true;
+                }
+                return false;
+            }
+        }
+    }
+
     public static int SelectSongsAlbumID (int songID) {
         using (var connection = new SqliteConnection(connectionString)) {
             connection.Open();
