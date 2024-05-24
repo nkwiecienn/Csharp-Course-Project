@@ -7,6 +7,7 @@
     <thead>
         <tr>
             <th>Name</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -14,6 +15,7 @@
     {
         <tr>
             <td>@song.Name</td>
+            <td><a href="@Url.Action("AddToPlaylist", new { id = song.SongID })">Add to playlist</a></td>
         </tr>
     }
     </tbody>
