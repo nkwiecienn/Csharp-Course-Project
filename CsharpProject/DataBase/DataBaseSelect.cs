@@ -306,6 +306,8 @@ public class DataBaseSelect {
                     "GROUP BY aa.Genre " +
                     "ORDER BY COUNT(ss.SongID) DESC " +
                     "LIMIT 1) " +
+                "AND s.SongID NOT IN (" +
+                    "SELECT SongID FROM Content WHERE PlaylistID = @playlistID ) " +
                 "GROUP BY s.SongID " +
                 "ORDER BY (SELECT COUNT(f.UserID) FROM Favorites f WHERE f.SongID = s.SongID) DESC " +
                 "LIMIT 5;", connection);
