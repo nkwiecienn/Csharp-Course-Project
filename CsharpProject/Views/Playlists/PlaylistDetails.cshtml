@@ -14,7 +14,11 @@
     {
         <tr>
             <td>@song.Name</td>
-            <td><a href="@Url.Action("AddToFavorites", new { id = song.SongID, playlistID = Model.PlaylistID})">Favorite</a></td>
+            <td>
+                @if(!DataBaseHelpers.IsSongAddedToFavorites(@song.SongID, Model.UserID)){
+                <a href="@Url.Action("AddToFavorites", new { id = song.SongID, playlistID = Model.PlaylistID})">Favorite</a>
+                }
+                </td>
         </tr>
     }
     </tbody>
@@ -27,6 +31,7 @@
         <tr>
             <th>Name</th>
             <th></th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -34,7 +39,12 @@
     {
         <tr>
             <td>@song.Name</td>
-            <td><a href="@Url.Action("AddToFavorites", new { id = song.SongID, playlistID = Model.PlaylistID})">Favorite</a></td>
+            <td><a href="@Url.Action("AddToPlaylist", new { id = song.SongID, playlistID = Model.PlaylistID })">Add to playlist</a></td>
+            <td>
+            @if(!DataBaseHelpers.IsSongAddedToFavorites(@song.SongID, Model.UserID)){
+            <a href="@Url.Action("AddToFavorites", new { id = song.SongID, playlistID = Model.PlaylistID})">Favorite</a>
+            }
+            </td>
         </tr>
     }
     </tbody>

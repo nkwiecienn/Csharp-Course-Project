@@ -1,10 +1,6 @@
 TODO:
-- Można dodać do ulubionych tylko piosenki, których nie ma w ulubionych
-- Po dodaniu piosenki do playlisty widok wraca do widoku albumu
-
 - Usuwanie piosenek z playlist
 - Tworzenie nowych playlist
-- Dodawanie do playlisty piosenek z polecanych
 - Dodanie do polecanych tego żeby polecanych piosenek nie było na playliście (nie pamiętam czy to już jest)
 - Komunikat że piosenka jest już na playliście jeśli chce się ją dodać drugi raz
 
@@ -16,3 +12,7 @@ TODO Admin:
 - usuwanie użytkowników
 
 REST API????????????????????????
+
+Ekstra TODO:
+- mniejszy spaghetti code xDD tzn żeby nie powtarzać tych samych metod w wielu klasach
+- podzielić klasy z bazy danych na foldery żeby nie było takiego bałaganu

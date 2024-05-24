@@ -19,6 +19,9 @@ public class ArtistsController : Controller
 
     public IActionResult AlbumDetails(int id) {
         ViewData["Username"] = HttpContext.Session.GetString("Username");
+        int userID = (int)HttpContext.Session.GetInt32("UserID");
+        ViewData["UserID"] = userID;
+
         var album = DataBaseSelect.SelectAlbum(id);
         return View(album);
     }
@@ -37,7 +40,8 @@ public class ArtistsController : Controller
     public IActionResult Add (int playlistID, int songID) {
         ViewData["Username"] = HttpContext.Session.GetString("Username");
         DataBaseInsertStatements.InsertIntoContent(playlistID, songID);
-        return RedirectToAction("Index");
+
+        return RedirectToAction("AlbumDetails", new { id = DataBaseHelpers.SelectSongsAlbumID(songID)});
     }
 
     public IActionResult AddToFavorites(int id, int albumID) {
