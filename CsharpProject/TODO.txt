@@ -1,0 +1,15 @@
+TODO:
+- Dodawanie piosenek do ulubionych
+- Dodawanie do playlist piosenek z ulubionych
+
+- Usuwanie piosenek z playlist
+- Tworzenie nowych playlist
+- Dodawanie do playlisty piosenek z polecanych
+- Dodanie do polecanych tego żeby polecanych piosenek nie było na playliście (nie pamiętam czy to już jest)
+
+TODO Admin:
+- dodanie admina
+- dodawanie/usuwanie artystów
+- dodawanie/usuwanie albumów
+- dodawanie/usuwanie piosenek
+- usuwanie użytkowników

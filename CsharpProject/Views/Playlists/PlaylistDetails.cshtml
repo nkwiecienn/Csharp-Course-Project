@@ -9,7 +9,7 @@
         </tr>
     </thead>
     <tbody>
-    @foreach (var song in DataBaseSelect.SelectAlbumsSongs(Model.PlaylistID))
+    @foreach (var song in DataBaseSelect.SelectPlaylistsSongs(Model.PlaylistID))
     {
         <tr>
             <td>@song.Name</td>

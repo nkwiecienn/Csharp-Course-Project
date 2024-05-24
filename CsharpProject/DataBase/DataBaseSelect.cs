@@ -62,7 +62,7 @@ public class DataBaseSelect {
                     });
                 }
             }
-
+            connection.Close();
         }
 
         return artists[0];
@@ -84,7 +84,7 @@ public class DataBaseSelect {
                     });
                 }
             }
-
+            connection.Close();
         }
 
         return artists;
@@ -109,7 +109,7 @@ public class DataBaseSelect {
                     });
                 }
             }
-
+            connection.Close();
         }
 
         return albums[0];
@@ -135,7 +135,7 @@ public class DataBaseSelect {
                     });
                 }
             }
-
+            connection.Close();
         }
 
         return albums;
@@ -160,7 +160,7 @@ public class DataBaseSelect {
                     });
                 }
             }
-
+            connection.Close();
         }
 
         return songs;        
@@ -204,7 +204,7 @@ public class DataBaseSelect {
                     });
                 }
             }
-
+            connection.Close();
         }
 
         return playlists;
@@ -218,21 +218,24 @@ public class DataBaseSelect {
             var command = new SqliteCommand(
                 "SELECT s.SongID, s.AlbumID, s.Name " +
                 "FROM Songs s " +
-                "INNER JOIN Content c ON s.SongID = c.SongID " +
+                "JOIN Content c ON s.SongID = c.SongID " +
                 "WHERE c.PlaylistID = @playlistID", connection);
             command.Parameters.AddWithValue("@playlistID", playlistID);
 
             using (var reader = command.ExecuteReader()) {
+                int index = 0;
                 while (reader.Read()) {
                     songs.Add(new Song {
                         SongID = reader.GetInt32(0),
                         AlbumID = reader.GetInt32(1),
                         Name = reader.GetString(2)
                     });
+                    Console.WriteLine(songs[index].Name);
+                    index++;
                 }
             }
+            connection.Close();
         }
-
         return songs;
     }
 
@@ -260,7 +263,7 @@ public class DataBaseSelect {
                     });
                 }
             }
-
+            connection.Close();
         }
 
         return songs;
@@ -299,6 +302,7 @@ public class DataBaseSelect {
                     });
                 }
             }
+            connection.Close();
         }
 
         return songs;

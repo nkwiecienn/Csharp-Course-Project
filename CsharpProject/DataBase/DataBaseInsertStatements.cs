@@ -10,6 +10,7 @@ public class DataBaseInsertStatements {
             command.Parameters.AddWithValue("@playlistID", playlistID);
             command.Parameters.AddWithValue("@songID", songID);
             command.ExecuteNonQuery();
+            connection.Close();
         }
     }
 }
