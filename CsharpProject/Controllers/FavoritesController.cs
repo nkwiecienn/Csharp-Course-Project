@@ -28,4 +28,12 @@ public class FavoritesController : Controller
         DataBaseInsertStatements.InsertIntoContent(playlistID, songID);
         return RedirectToAction("Index");
     }
+
+    public IActionResult DeleteFromFavorites (int id) {
+        ViewData["Username"] = HttpContext.Session.GetString("Username");
+        int userID = (int)HttpContext.Session.GetInt32("UserID");
+        DataBaseDeleteStatements.DeleteFromFavorites(userID, id);
+        
+        return RedirectToAction("Index");
+    }
 }

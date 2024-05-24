@@ -16,6 +16,9 @@
         <tr>
             <td>@song.Name</td>
             <td><a href="@Url.Action("AddToPlaylist", new { id = song.SongID })">Add to playlist</a></td>
+            <td>
+                <a href="@Url.Action("DeleteFromFavorites", new { id = song.SongID})">Delete</a>
+            </td>
         </tr>
     }
     </tbody>

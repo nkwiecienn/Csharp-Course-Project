@@ -1,7 +1,3 @@
-TODO:
-- Komunikat że piosenka jest już na playliście jeśli chce się ją dodać drugi raz
-- Usuwanie piosenek z ulubionych
-
 TODO Admin:
 - dodanie admina
 - dodawanie/usuwanie artystów
