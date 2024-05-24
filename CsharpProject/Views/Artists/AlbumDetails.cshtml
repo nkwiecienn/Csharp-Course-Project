@@ -7,7 +7,8 @@
     <thead>
         <tr>
             <th>Name</th>
-            <th>Add to playlist</th>
+            <th></th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -15,7 +16,8 @@
     {
         <tr>
             <td>@song.Name</td>
-            <td><a href="@Url.Action("AddToPlaylist", new { id = song.SongID })">Add</a></td>
+            <td><a href="@Url.Action("AddToPlaylist", new { id = song.SongID })">Add to playlist</a></td>
+            <td><a href="@Url.Action("AddToFavorites", new { id = song.SongID, albumID = Model.AlbumID })">Favorite</a></td>
         </tr>
     }
     </tbody>

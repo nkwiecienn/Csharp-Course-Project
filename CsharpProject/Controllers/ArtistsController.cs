@@ -19,7 +19,6 @@ public class ArtistsController : Controller
 
     public IActionResult AlbumDetails(int id) {
         ViewData["Username"] = HttpContext.Session.GetString("Username");
-
         var album = DataBaseSelect.SelectAlbum(id);
         return View(album);
     }
@@ -40,4 +39,12 @@ public class ArtistsController : Controller
         DataBaseInsertStatements.InsertIntoContent(playlistID, songID);
         return RedirectToAction("Index");
     }
+
+    public IActionResult AddToFavorites(int id, int albumID) {
+        ViewData["Username"] = HttpContext.Session.GetString("Username");
+        int userID = (int)HttpContext.Session.GetInt32("UserID");
+        DataBaseInsertStatements.InsertIntoFavorites(id, userID);
+
+        return RedirectToAction("AlbumDetails", new { id = albumID });
+    }   
 }

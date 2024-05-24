@@ -13,4 +13,15 @@ public class DataBaseInsertStatements {
             connection.Close();
         }
     }
+
+    public static void InsertIntoFavorites(int songID, int userID) {
+        using (var connection = new SqliteConnection(connectionString)) {
+            connection.Open();
+            var command = new SqliteCommand("INSERT INTO Favorites (SongID, UserID) VALUES (@songID, @userID);", connection);
+            command.Parameters.AddWithValue("@songID", songID);
+            command.Parameters.AddWithValue("@userID", userID);
+            command.ExecuteNonQuery();
+            connection.Close();
+        }
+    }
 }

@@ -90,29 +90,51 @@ public class DataBaseSelect {
         return artists;
     }
 
-    public static Album SelectAlbum (int albumID) {
-        var albums = new List<Album>();
+    // public static Album SelectAlbum (int albumID) {
+    //     var albums = new List<Album>();
 
+    //     using (var connection = new SqliteConnection(connectionString)) {
+    //         connection.Open();
+    //         var command = new SqliteCommand("SELECT AlbumID, Name, ArtistID, ReleaseDate, Genre FROM Albums WHERE AlbumID = @albumID", connection);
+    //         command.Parameters.AddWithValue("@albumID", albumID);
+
+    //         using (var reader = command.ExecuteReader()) {
+    //             while(reader.Read()) {
+    //                 albums.Add(new Album{
+    //                     AlbumID = reader.GetInt32(0),
+    //                     Name = reader.GetString(1),
+    //                     ArtistID = reader.GetInt32(2),
+    //                     ReleaseDate = reader.GetString(3),
+    //                     Genre = reader.GetString(4)
+    //                 });
+    //             }
+    //         }
+    //         connection.Close();
+    //     }
+
+    //     return albums[0];
+    // }
+
+        public static Album SelectAlbum(int albumID) {
         using (var connection = new SqliteConnection(connectionString)) {
             connection.Open();
             var command = new SqliteCommand("SELECT AlbumID, Name, ArtistID, ReleaseDate, Genre FROM Albums WHERE AlbumID = @albumID", connection);
             command.Parameters.AddWithValue("@albumID", albumID);
 
             using (var reader = command.ExecuteReader()) {
-                while(reader.Read()) {
-                    albums.Add(new Album{
+                if (reader.Read()) {
+                    return new Album {
                         AlbumID = reader.GetInt32(0),
                         Name = reader.GetString(1),
                         ArtistID = reader.GetInt32(2),
                         ReleaseDate = reader.GetString(3),
                         Genre = reader.GetString(4)
-                    });
+                    };
+                } else {
+                    return null;
                 }
             }
-            connection.Close();
         }
-
-        return albums[0];
     }
 
     public static List<Album> SelectArtistsAlbums (int artistID) {
