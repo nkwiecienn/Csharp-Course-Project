@@ -1,5 +1,4 @@
 TODO:
-- Dodawanie piosenek do ulubionych z playlist
 - Dodawanie do playlist piosenek z ulubionych
 
 - Usuwanie piosenek z playlist

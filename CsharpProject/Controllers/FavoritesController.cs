@@ -10,5 +10,5 @@ public class FavoritesController : Controller
         var favorites = DataBaseSelect.SelectUsersFavorites(userID);
 
         return View(favorites);
-    }
+    } 
 }

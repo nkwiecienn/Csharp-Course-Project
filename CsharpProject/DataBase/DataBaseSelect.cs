@@ -245,15 +245,12 @@ public class DataBaseSelect {
             command.Parameters.AddWithValue("@playlistID", playlistID);
 
             using (var reader = command.ExecuteReader()) {
-                int index = 0;
                 while (reader.Read()) {
                     songs.Add(new Song {
                         SongID = reader.GetInt32(0),
                         AlbumID = reader.GetInt32(1),
                         Name = reader.GetString(2)
                     });
-                    Console.WriteLine(songs[index].Name);
-                    index++;
                 }
             }
             connection.Close();

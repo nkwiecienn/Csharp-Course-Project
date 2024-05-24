@@ -18,5 +18,13 @@ public class PlaylistsController : Controller
         var playlist = DataBaseSelect.SelectPlaylist(id);
         return View(playlist);
     }
+
+    public IActionResult AddToFavorites(int id, int playlistID) {
+        ViewData["Username"] = HttpContext.Session.GetString("Username");
+        int userID = (int)HttpContext.Session.GetInt32("UserID");
+        DataBaseInsertStatements.InsertIntoFavorites(id, userID);
+
+        return RedirectToAction("PlaylistDetails", new { id =  playlistID});
+    }   
     
 }
